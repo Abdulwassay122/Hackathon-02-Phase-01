@@ -19,17 +19,48 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Virtual environments
+*.log
+.env*
+.venv/
 venv/
-env/
-ENV/
 
-# IDE
-.vscode/
-.idea/
+# Node.js/JavaScript/TypeScript (for frontend)
+node_modules/
+dist/
+build/
+*.log
+.env*
+.yarn/
+.cache/
 
-# OS
+# Next.js specific
+.next/
+out/
+.next/cache/
+
+# FastAPI/Backend
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/build/
+backend/dist/
+backend/*.log
+backend/.env*
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/out/
+frontend/*.log
+frontend/.env.local
+
+# Universal
 .DS_Store
 Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
 node_modules
