@@ -1,0 +1,105 @@
+# API Contract: Todo Application
+
+## Overview
+RESTful API for managing user tasks with full CRUD functionality.
+
+## Base URL
+`http://localhost:8000/api`
+
+## Authentication
+TBD (Based on existing authentication mechanism)
+
+## Endpoints
+
+### GET /tasks
+**Description**: Retrieve all tasks for the authenticated user
+**Response**:
+```json
+{
+  "tasks": [
+    {
+      "id": "string",
+      "title": "string",
+      "description": "string",
+      "completed": "boolean",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    }
+  ]
+}
+```
+
+### POST /tasks
+**Description**: Create a new task
+**Request**:
+```json
+{
+  "title": "string",
+  "description": "string"
+}
+```
+**Response**:
+```json
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "completed": false,
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp"
+}
+```
+
+### PUT /tasks/{id}
+**Description**: Update an existing task
+**Request**:
+```json
+{
+  "title": "string",
+  "description": "string"
+}
+```
+**Response**:
+```json
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "completed": "boolean",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp"
+}
+```
+
+### DELETE /tasks/{id}
+**Description**: Delete a task
+**Response**: 204 No Content
+
+### PATCH /tasks/{id}/complete
+**Description**: Toggle task completion status
+**Request**:
+```json
+{
+  "completed": "boolean"
+}
+```
+**Response**:
+```json
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "completed": "boolean",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp"
+}
+```
+
+## Error Responses
+All error responses follow this format:
+```json
+{
+  "error": "string",
+  "details": "string"
+}
+```

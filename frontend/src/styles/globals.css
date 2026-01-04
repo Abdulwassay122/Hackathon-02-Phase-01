@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the todo application */
+.task-item {
+  @apply bg-white p-4 rounded-lg shadow mb-4 border border-gray-200;
+}
+
+.task-item.completed {
+  @apply bg-green-50;
+}
+
+.task-item.editing {
+  @apply bg-blue-50;
+}
+
+.task-content {
+  @apply mb-4;
+}
+
+.task-content h3 {
+  @apply text-lg font-semibold mb-1;
+}
+
+.task-content p {
+  @apply text-gray-600 mb-2;
+}
+
+.task-meta {
+  @apply text-xs text-gray-500 flex space-x-4;
+}
+
+.task-actions {
+  @apply flex space-x-2;
+}
+
+.task-actions button {
+  @apply px-3 py-1 rounded text-sm font-medium transition-colors;
+}
+
+.completed-btn {
+  @apply bg-green-100 text-green-800 hover:bg-green-200;
+}
+
+.pending-btn {
+  @apply bg-yellow-100 text-yellow-800 hover:bg-yellow-200;
+}
+
+.delete-btn {
+  @apply bg-red-100 text-red-800 hover:bg-red-200;
+}
+
+.task-form {
+  @apply bg-white p-6 rounded-lg shadow mb-6;
+}
+
+.task-form div {
+  @apply mb-4;
+}
+
+.task-form label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.task-form input,
+.task-form textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+}
+
+.task-form textarea {
+  @apply h-24;
+}
+
+.task-form button {
+  @apply w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.task-form button:disabled {
+  @apply bg-indigo-400 cursor-not-allowed;
+}
+
+.error {
+  @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4;
+}
+
+.auth-container {
+  @apply max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-md;
+}
+
+.auth-container h1 {
+  @apply text-2xl font-bold text-center mb-6 text-gray-800;
+}
+
+.auth-container form div {
+  @apply mb-4;
+}
+
+.auth-container label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.auth-container input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+}
+
+.auth-container button {
+  @apply w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.auth-container button:disabled {
+  @apply bg-indigo-400 cursor-not-allowed;
+}
+
+.auth-container p {
+  @apply text-center text-sm text-gray-600 mt-4;
+}
+
+.auth-container a {
+  @apply text-indigo-600 hover:text-indigo-500;
+}
+
+.dashboard-content {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.task-creation-section {
+  @apply lg:order-2;
+}
+
+.task-list-section {
+  @apply lg:order-1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-content {
+    @apply grid-cols-1;
+  }
+
+  .task-creation-section,
+  .task-list-section {
+    @apply order-first;
+  }
+}

@@ -1,0 +1,155 @@
+# API Contract: Todo Application with Authentication
+
+## Overview
+RESTful API for managing user tasks with authentication and full CRUD functionality.
+
+## Base URL
+`http://localhost:8000`
+
+## Authentication
+All endpoints except `/auth/login` and `/` (root) require authentication via JWT token in Authorization header:
+`Authorization: Bearer <token>`
+
+## Endpoints
+
+### Authentication
+- POST `/auth/login`
+  - Description: Authenticate user and return JWT token
+  - Request:
+  ```json
+  {
+    "username": "string",
+    "password": "string"
+  }
+  ```
+  - Response: 200 OK
+  ```json
+  {
+    "access_token": "string",
+    "token_type": "bearer",
+    "user": {
+      "id": "string",
+      "username": "string"
+    }
+  }
+  ```
+
+- POST `/auth/logout`
+  - Description: Invalidate authentication token
+  - Response: 200 OK
+
+- GET `/auth/me`
+  - Description: Get current user information
+  - Response: 200 OK
+  ```json
+  {
+    "id": "string",
+    "username": "string",
+    "email": "string"
+  }
+  ```
+
+### Root Route
+- GET `/`
+  - Description: Return login page or redirect authenticated users
+  - Response: 200 OK (HTML page with login form)
+
+### Protected Task Management
+- GET `/api/tasks`
+  - Description: Retrieve all tasks for the authenticated user
+  - Response: 200 OK
+  ```json
+  {
+    "tasks": [
+      {
+        "id": "string",
+        "title": "string",
+        "description": "string",
+        "completed": "boolean",
+        "createdAt": "timestamp",
+        "updatedAt": "timestamp"
+      }
+    ]
+  }
+  ```
+
+- POST `/api/tasks`
+  - Description: Create a new task
+  - Request:
+  ```json
+  {
+    "title": "string",
+    "description": "string"
+  }
+  ```
+  - Response: 201 Created
+  ```json
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "completed": false,
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+  ```
+
+- PUT `/api/tasks/{id}`
+  - Description: Update an existing task
+  - Request:
+  ```json
+  {
+    "title": "string",
+    "description": "string"
+  }
+  ```
+  - Response: 200 OK
+  ```json
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "completed": "boolean",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+  ```
+
+- DELETE `/api/tasks/{id}`
+  - Description: Delete a task
+  - Response: 204 No Content
+
+- PATCH `/api/tasks/{id}/complete`
+  - Description: Toggle task completion status
+  - Request:
+  ```json
+  {
+    "completed": "boolean"
+  }
+  ```
+  - Response: 200 OK
+  ```json
+  {
+    "id": "string",
+    "title": "string",
+    "description": "string",
+    "completed": "boolean",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+  ```
+
+## Error Responses
+All error responses follow this format:
+```json
+{
+  "detail": "string"
+}
+```
+
+Common error codes:
+- 400: Bad Request (invalid input)
+- 401: Unauthorized (authentication required)
+- 403: Forbidden (insufficient permissions)
+- 404: Not Found (resource doesn't exist)
+- 500: Internal Server Error (server error)
