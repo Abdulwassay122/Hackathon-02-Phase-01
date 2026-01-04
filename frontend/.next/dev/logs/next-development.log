@@ -1,0 +1,31 @@
+[00:00:03.198] Server  LOG      ✓ Ready in 1981ms
+[00:00:06.269] Server  LOG      ○ Compiling /_not-found/page ...
+[00:00:08.707] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:29.638] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:37.393] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:50.067] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:02.139] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:39.819] Browser ERROR   {}
+[00:01:40.054] Browser ERROR   {}
+[00:36:24.194] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:17.107] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:17.197] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:17.287] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:20.141] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:20.150] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:20.783] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:20.795] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:20.866] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:20.878] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:21.182] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:21.189] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:21.235] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:21.246] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:22.022] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:22.028] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:23.980] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:23.985] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:24.050] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:24.072] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:24.546] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:38:24.559] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
