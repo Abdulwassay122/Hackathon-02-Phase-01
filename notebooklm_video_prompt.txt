@@ -1,0 +1,28 @@
+NotebookLM 60-Second Video Prompt: In-Memory Python Todo CLI Application
+
+Create a 60-second promotional video for an In-Memory Python Todo CLI Application built during a hackathon. The video should showcase:
+
+1. VISUALS: Show a terminal/command prompt interface with Python code running
+2. VOICEOVER: "Introducing the In-Memory Python Todo CLI App - your simple, efficient solution for managing tasks from the command line."
+
+3. VISUALS: Demonstrate the 5 core features:
+   - Adding tasks with titles and optional descriptions
+   - Viewing all tasks in a formatted list
+   - Updating task details
+   - Deleting tasks by ID
+   - Toggling completion status
+
+4. VOICEOVER: "With five essential commands, you can add, view, update, delete, and mark tasks complete - all without leaving your terminal."
+
+5. VISUALS: Show error handling and validation features
+   - Display clean error messages for invalid inputs
+   - Show graceful handling of edge cases
+
+6. VOICEOVER: "Built with robust error handling and clean user experience in mind, this CLI app proves that powerful task management doesn't need to be complex."
+
+7. VISUALS: End with GitHub/hackathon branding and a call to action
+   - Text overlay: "Built with Python 3.13+ | In-Memory Storage | Clean Architecture"
+
+8. VOICEOVER: "Available now - streamline your command-line productivity today!"
+
+Keep the video dynamic with terminal screen recordings, code snippets, and smooth transitions between features. Use a modern, clean aesthetic with tech-appropriate color schemes (dark mode terminal theme recommended).

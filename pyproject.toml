@@ -1,0 +1,33 @@
+[project]
+name = "todo-app-backend"
+version = "0.1.0"
+description = "Todo application backend with FastAPI"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+    "python-multipart>=0.0.20",
+    "pydantic>=2.9.2",
+    "pydantic-settings>=2.1.0",
+    "sqlmodel>=0.0.22",
+    "python-jose[cryptography]>=3.3.0",
+    "better-exceptions>=0.3.3"
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["backend/src"]
+
+[project.scripts]
+todo-backend = "backend.src.main:app"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.25.0"
+]
