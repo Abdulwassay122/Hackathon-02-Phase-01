@@ -13,11 +13,16 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const router = useRouter();
 
   useEffect(() => {
-    const checkAuth = () => {
+    const checkAuth = async () => {
+      // Add a small delay to ensure token is properly set before checking
+      await new Promise(resolve => setTimeout(resolve, 100));
+
       const authenticated = authService.isAuthenticated();
       setIsAuthenticated(authenticated);
 
       if (!authenticated) {
+        // Clear any potential invalid tokens
+        authService.removeToken();
         router.push('/login');
       }
     };

@@ -1,13 +1,13 @@
 // src/components/TodoList/TodoList.tsx
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { api } from '../../lib/api';
+import { useState, useEffect } from "react";
+import { apiService } from "../../services/api";
 
 interface Task {
   id: number;
   title: string;
-  description: string;
+  description?: string;
   completed: boolean;
   user_id: string;
   created_at: string;
@@ -16,9 +16,9 @@ interface Task {
 
 export default function TodoList() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTask, setNewTask] = useState({ title: '', description: '' });
+  const [newTask, setNewTask] = useState({ title: "", description: "" });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetchTasks();
@@ -27,16 +27,11 @@ export default function TodoList() {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const response = await api.get('http://localhost:8000/api/tasks');
-
-      if (response.ok) {
-        const data = await response.json();
-        setTasks(data);
-      } else {
-        setError('Failed to fetch tasks');
-      }
+      const response = await apiService.getTasks();
+      // The backend returns {tasks: [...]} format wrapped in ApiResponse
+      setTasks(response.data?.tasks || []);
     } catch (err) {
-      setError('An error occurred while fetching tasks');
+      setError("An error occurred while fetching tasks");
       console.error(err);
     } finally {
       setLoading(false);
@@ -47,54 +42,51 @@ export default function TodoList() {
     e.preventDefault();
 
     try {
-      const response = await api.post('http://localhost:8000/api/tasks', {
+      const response = await apiService.createTask({
         title: newTask.title,
         description: newTask.description,
-        completed: false
+        completed: false,
       });
 
-      if (response.ok) {
-        const createdTask = await response.json();
-        setTasks([...tasks, createdTask]);
-        setNewTask({ title: '', description: '' });
-      } else {
-        setError('Failed to add task');
-      }
+      // Assuming response is an ApiResponse<Task>, extract the task from data
+      const task = response.data;
+      if (!task) return;
+
+      setTasks((prev) => [...prev, task]);
+      setNewTask({ title: "", description: "" });
     } catch (err) {
-      setError('An error occurred while adding task');
+      setError("An error occurred while adding task");
       console.error(err);
     }
   };
 
   const toggleTaskCompletion = async (taskId: number) => {
     try {
-      const response = await api.patch(`http://localhost:8000/api/tasks/${taskId}/complete`, {});
+      const response = await apiService.toggleTaskCompletion(taskId);
 
-      if (response.ok) {
-        const updatedTask = (await response.json()).task;
-        setTasks(tasks.map(task =>
-          task.id === taskId ? { ...task, completed: updatedTask.completed } : task
-        ));
-      } else {
-        setError('Failed to update task');
-      }
+      setTasks(
+        tasks.map((task) =>
+          task.id === taskId
+            ? {
+                ...task,
+                completed: response.data?.task?.completed ?? task.completed,
+              }
+            : task,
+        ),
+      );
     } catch (err) {
-      setError('An error occurred while updating task');
+      setError("An error occurred while updating task");
       console.error(err);
     }
   };
 
   const deleteTask = async (taskId: number) => {
     try {
-      const response = await api.delete(`http://localhost:8000/api/tasks/${taskId}`);
+      await apiService.deleteTask(taskId);
 
-      if (response.ok) {
-        setTasks(tasks.filter(task => task.id !== taskId));
-      } else {
-        setError('Failed to delete task');
-      }
+      setTasks(tasks.filter((task) => task.id !== taskId));
     } catch (err) {
-      setError('An error occurred while deleting task');
+      setError("An error occurred while deleting task");
       console.error(err);
     }
   };
@@ -109,31 +101,44 @@ export default function TodoList() {
         </div>
       )}
 
-      <form onSubmit={handleAddTask} className="mb-8 p-4 bg-white rounded-lg shadow">
+      <form
+        onSubmit={handleAddTask}
+        className="mb-8 p-4 bg-white rounded-lg shadow"
+      >
         <h2 className="text-xl font-semibold mb-4">Add New Task</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700"
+            >
               Title
             </label>
             <input
               type="text"
               id="title"
               value={newTask.title}
-              onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+              onChange={(e) =>
+                setNewTask({ ...newTask, title: e.target.value })
+              }
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
             />
           </div>
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700"
+            >
               Description
             </label>
             <input
               type="text"
               id="description"
               value={newTask.description}
-              onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+              onChange={(e) =>
+                setNewTask({ ...newTask, description: e.target.value })
+              }
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
@@ -154,7 +159,9 @@ export default function TodoList() {
             <li key={task.id}>
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
-                  <p className={`text-sm font-medium ${task.completed ? 'line-through text-gray-500' : 'text-indigo-600'}`}>
+                  <p
+                    className={`text-sm font-medium ${task.completed ? "line-through text-gray-500" : "text-indigo-600"}`}
+                  >
                     {task.title}
                   </p>
                   <div className="flex items-center space-x-2">
@@ -162,11 +169,11 @@ export default function TodoList() {
                       onClick={() => toggleTaskCompletion(task.id)}
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                         task.completed
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-yellow-100 text-yellow-800'
+                          ? "bg-green-100 text-green-800"
+                          : "bg-yellow-100 text-yellow-800"
                       }`}
                     >
-                      {task.completed ? 'Completed' : 'Pending'}
+                      {task.completed ? "Completed" : "Pending"}
                     </button>
                     <button
                       onClick={() => deleteTask(task.id)}
@@ -182,8 +189,12 @@ export default function TodoList() {
                   </div>
                 )}
                 <div className="mt-2 flex justify-between text-xs text-gray-500">
-                  <span>Created: {new Date(task.created_at).toLocaleDateString()}</span>
-                  <span>Updated: {new Date(task.updated_at).toLocaleDateString()}</span>
+                  <span>
+                    Created: {new Date(task.created_at).toLocaleDateString()}
+                  </span>
+                  <span>
+                    Updated: {new Date(task.updated_at).toLocaleDateString()}
+                  </span>
                 </div>
               </div>
             </li>

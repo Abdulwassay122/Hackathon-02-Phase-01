@@ -1,0 +1,124 @@
+# API Contract: Dashboard Access Authentication
+
+## Overview
+This contract defines the authentication requirements and behavior for accessing the dashboard route.
+
+## Frontend Route Protection
+
+### Route: /dashboard
+**Description**: Protected dashboard route that requires valid authentication
+
+**Access Control**:
+- **Public Access**: No
+- **Authentication Required**: Yes
+- **Required Token**: Valid JWT token in localStorage
+
+**Frontend Behavior**:
+1. **Authenticated User**:
+   - Check auth state via authService.isAuthenticated()
+   - If authenticated: Render dashboard content
+   - If not authenticated: Redirect to /login
+
+2. **Token Validation**:
+   - Verify token exists in localStorage
+   - Check token validity (not expired)
+   - If token invalid: Redirect to /login
+
+### Expected Flow
+1. User navigates to /dashboard
+2. Frontend checks authentication state
+3. If authenticated: Load dashboard content
+4. If not authenticated: Redirect to /login
+5. After login: Optionally redirect back to dashboard
+
+## Backend API Endpoints (Protected)
+
+### GET /api/tasks
+**Description**: Retrieve user's tasks for dashboard display
+
+**Authentication**: JWT Bearer token required
+**Headers**:
+  - Authorization: Bearer {token}
+
+**Responses**:
+- 200 OK: Successfully retrieved tasks
+  ```json
+  [
+    {
+      "id": "string",
+      "title": "string",
+      "description": "string",
+      "completed": false,
+      "user_id": "string",
+      "created_at": "datetime",
+      "updated_at": "datetime"
+    }
+  ]
+  ```
+- 401 Unauthorized: Invalid or expired token
+  ```json
+  {
+    "detail": "Could not validate credentials"
+  }
+  ```
+
+### POST /api/tasks
+**Description**: Create a new task from dashboard
+
+**Authentication**: JWT Bearer token required
+**Headers**:
+  - Authorization: Bearer {token}
+**Request Body**:
+  ```json
+  {
+    "title": "string",
+    "description": "string",
+    "completed": false
+  }
+  ```
+
+**Responses**:
+- 200 OK: Task created successfully
+- 401 Unauthorized: Invalid or expired token
+
+## Authentication Token Requirements
+
+### JWT Claims
+- **sub**: Subject (typically username or user ID)
+- **user_id**: Unique identifier for the user
+- **exp**: Expiration timestamp
+- **iat**: Issued at timestamp
+
+### Token Validation Rules
+- Token must be properly formatted JWT
+- Signature must be valid and verifiable
+- Token must not be expired
+- User referenced by token must exist in database
+- User must be active (is_active = true)
+
+## Error Handling
+
+### 401 Unauthorized Scenarios
+1. **Missing Token**: No Authorization header provided
+2. **Invalid Token**: Malformed or incorrectly signed JWT
+3. **Expired Token**: Token's exp claim is in the past
+4. **Inactive User**: User account has been deactivated
+5. **Revoked Token**: Token has been invalidated (not currently implemented)
+
+### Client-Side Error Handling
+- Detect 401 responses from API calls
+- Clear invalid token from localStorage
+- Redirect user to login page
+- Optionally preserve attempted destination for post-login redirect
+
+## Security Considerations
+
+### Token Storage
+- Store JWT in localStorage (current implementation)
+- Consider HttpOnly cookies for enhanced security (future improvement)
+- Implement token refresh mechanism to minimize exposure window
+
+### Session Management
+- Implement proper logout functionality
+- Clear tokens from storage on logout
+- Invalidate sessions on password change/account deactivation

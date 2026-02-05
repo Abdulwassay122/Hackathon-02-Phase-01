@@ -5,6 +5,6 @@ uvicorn==0.32.0
 pydantic==2.9.2
 python-multipart==0.0.20
 better-exceptions==0.3.3
-psycopg2-binary
-passlib
-jwt
+psycopg2-binary==2.9.9
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
