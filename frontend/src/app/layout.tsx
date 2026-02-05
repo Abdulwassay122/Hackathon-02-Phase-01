@@ -1,5 +1,9 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next'
+import '../styles/globals.css'
+import { AuthProvider } from '../context/AuthContext'
+import ToastComponent from '../components/Toast'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 export const metadata: Metadata = {
   title: 'Todo App',
@@ -13,7 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ErrorBoundary>
+          <AuthProvider>
+            {children}
+            <ToastComponent />
+          </AuthProvider>
+        </ErrorBoundary>
+      </body>
     </html>
   )
 }

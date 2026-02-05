@@ -1,48 +1,116 @@
 from datetime import datetime, timedelta
 from typing import Optional
 import jwt
+from src.config import settings
 from fastapi import HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from passlib.context import CryptContext
+from jose import JWTError
+import logging
 
-# JWT configuration
-SECRET_KEY = "your-secret-key-change-in-production"  # This should be in environment variables
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+# Configure logging
+logger = logging.getLogger(__name__)
 
-security = HTTPBearer()
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
-    """Create a JWT access token"""
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.utcnow() + expires_delta
-    else:
-        expire = datetime.utcnow() + timedelta(minutes=15)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+def decode_better_auth_token(token: str):
+    """
+    Decode and validate JWT token from Better Auth
+    """
+    if not settings.better_auth_secret:
+        logger.error("Better Auth secret not configured")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Better Auth secret not configured"
+        )
 
-def verify_token(token: str) -> dict:
-    """Verify a JWT token and return the payload"""
+    # Validate token format
+    if not token or not isinstance(token, str):
+        logger.warning("Invalid token format: token is None or not a string")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token format",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    # Basic format check (JWT should have 3 parts separated by dots)
+    token_parts = token.split('.')
+    if len(token_parts) != 3:
+        logger.warning(f"Invalid JWT format: token does not have 3 parts - received {len(token_parts)} parts")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token format",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return payload
-    except jwt.PyJWTError:
+        # Decode the token using the better auth secret
+        payload = jwt.decode(
+            token,
+            settings.better_auth_secret,
+            algorithms=["HS256"]
+        )
+
+        user_id: str = payload.get("userId")
+        email: str = payload.get("email")
+
+        if user_id is None:
+            logger.warning("Token payload missing user ID")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not validate credentials - missing user ID",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        logger.info(f"Successfully decoded token for user ID: {user_id}")
+        return {
+            "user_id": user_id,
+            "email": email
+        }
+
+    except jwt.ExpiredSignatureError:
+        logger.warning("Token has expired")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has expired",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except jwt.InvalidSignatureError:
+        logger.warning("Invalid token signature")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token signature",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except jwt.DecodeError:
+        logger.warning("Token could not be decoded - invalid format")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not decode token - invalid format",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except jwt.JWTClaimsError:
+        logger.warning("Invalid token claims")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token claims",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except JWTError as e:
+        logger.warning(f"JWT error occurred: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except Exception as e:
+        logger.error(f"Unexpected error during token validation: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-def get_current_user(token: str):
-    """Get the current user from the token"""
-    payload = verify_token(token)
-    username: str = payload.get("sub")
-    if username is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    return username
+
+def verify_jwt_token(token: str):
+    """
+    Verify JWT token and return user information
+    """
+    return decode_better_auth_token(token)

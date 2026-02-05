@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { TaskResponse } from '../../../backend/src/models/task';
+import { Task } from '../types/api';
 import { apiService } from '../services/api';
+import { ApiResponse, TaskUpdate } from '../types/api';
 
 interface TaskItemProps {
-  task: TaskResponse;
+  task: Task;
   onTaskUpdated: () => void;
   onTaskDeleted: () => void;
 }
@@ -19,8 +20,10 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }: TaskIte
   const handleToggleComplete = async () => {
     setLoading(true);
     try {
-      await apiService.patch(`/tasks/${task.id}/complete`);
-      onTaskUpdated();
+      const response = await apiService.toggleTaskCompletion(task.id);
+      if (response.success) {
+        onTaskUpdated();
+      }
     } catch (err) {
       console.error('Failed to toggle task completion:', err);
     } finally {
@@ -32,9 +35,12 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }: TaskIte
     e.preventDefault();
     setLoading(true);
     try {
-      await apiService.put(`/tasks/${task.id}`, { title, description });
-      onTaskUpdated();
-      setIsEditing(false);
+      const taskUpdate: TaskUpdate = { title, description };
+      const response: ApiResponse<Task> = await apiService.updateTask(task.id, taskUpdate);
+      if (response.success) {
+        onTaskUpdated();
+        setIsEditing(false);
+      }
     } catch (err) {
       console.error('Failed to update task:', err);
     } finally {
@@ -46,8 +52,10 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }: TaskIte
     if (window.confirm('Are you sure you want to delete this task?')) {
       setLoading(true);
       try {
-        await apiService.delete(`/tasks/${task.id}`);
-        onTaskDeleted();
+        const response = await apiService.deleteTask(task.id);
+        if (response.success) {
+          onTaskDeleted();
+        }
       } catch (err) {
         console.error('Failed to delete task:', err);
       } finally {

@@ -1,18 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TaskResponse } from '../../../backend/src/models/task';
+import { Task } from '../types/api';
 import { apiService } from '../services/api';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorDisplay from './ErrorDisplay';
 import TaskItem from './TaskItem';
+import { ApiResponse } from '../types/api';
 
 interface TaskListProps {
-  userId: number;
+  userId?: string;
 }
 
 export default function TaskList({ userId }: TaskListProps) {
-  const [tasks, setTasks] = useState<TaskResponse[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -25,10 +26,15 @@ export default function TaskList({ userId }: TaskListProps) {
     try {
       setLoading(true);
       setError(null);
-      const data = await apiService.get<TaskResponse[]>('/tasks');
-      setTasks(data);
+      const response: ApiResponse<Task[]> = await apiService.getTasks();
+
+      if (response.success && response.data) {
+        setTasks(response.data);
+      } else {
+        setError(response.error || 'Failed to load tasks');
+      }
     } catch (err) {
-      setError('Failed to load tasks');
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
       console.error(err);
     } finally {
       setLoading(false);

@@ -1,31 +1,780 @@
-[00:00:03.198] Server  LOG      ✓ Ready in 1981ms
-[00:00:06.269] Server  LOG      ○ Compiling /_not-found/page ...
-[00:00:08.707] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:29.638] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:37.393] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:50.067] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:02.139] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:39.819] Browser ERROR   {}
-[00:01:40.054] Browser ERROR   {}
-[00:36:24.194] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:38:17.107] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:17.197] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:17.287] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:20.141] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:20.150] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:20.783] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:20.795] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:20.866] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:20.878] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:21.182] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:21.189] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:21.235] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:21.246] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:22.022] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:22.028] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:23.980] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:23.985] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:24.050] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:24.072] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:24.546] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
-[00:38:24.559] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'F:\Q 04 Hackathon 02\TodoApp\frontend\src\app'
+[00:00:05.398] Server  LOG      ✓ Ready in 4.1s
+[00:01:34.303] Server  LOG      ○ Compiling / ...
+[00:01:40.966] Server  ERROR    ⨯ ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+
+./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+[00:01:44.523] Browser ERROR   uncaughtError: Error: ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+[00:01:44.968] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:01:44.968] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:01:44.968] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:01:44.969] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:29:16.463] Server  ERROR    ⨯ ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+
+./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+[00:29:16.605] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:29:16.605] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:29:18.363] Browser ERROR   uncaughtError: Error: ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+[00:29:19.156] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:29:19.156] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:29:19.156] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:29:19.156] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:44:29.182] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:44:29.182] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:48:20.378] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:48:20.378] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:48:20.378] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:48:20.378] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:49:46.409] Server  ERROR    ⨯ ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+
+./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+[00:49:47.449] Browser ERROR   uncaughtError: Error: ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+
+[00:49:47.687] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:49:47.687] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:49:47.798] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:49:47.798] Browser ERROR   ./src/services/api.ts:1:1
+Export ApiResponse doesn't exist in target module
+> 1 | import { ApiResponse, Task, TaskCreate, TaskUpdate } from '../types/api';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | // API service utilities for JWT token handling
+  4 | const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+The export ApiResponse was not found in module [project]/src/types/api.ts [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/services/api.ts [Client Component Browser]
+    ./src/services/authService.ts [Client Component Browser]
+    ./src/context/AuthContext.tsx [Client Component Browser]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/services/api.ts [Client Component SSR]
+    ./src/services/authService.ts [Client Component SSR]
+    ./src/context/AuthContext.tsx [Client Component SSR]
+    ./src/context/AuthContext.tsx [Server Component]
+    ./src/app/layout.tsx [Server Component]
+[00:50:30.143] Server  LOG      ✓ Compiled in 736ms
+[00:50:34.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:51:12.152] Browser ERROR   {}

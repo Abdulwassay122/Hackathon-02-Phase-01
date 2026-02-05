@@ -1,34 +1,35 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { authService } from '../../../services/authService';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { authService } from "../../../services/authService";
+import { showToast } from "../../../components/Toast";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
-      // In a real implementation, we would call the auth service
-      // const result = await authService.login({ username, password });
-      // authService.saveToken(result.access_token);
+      // Use the AuthContext login method which handles token saving
+      await login({ username, password });
 
-      // For now, simulate login
-      await new Promise(resolve => setTimeout(resolve, 500));
-      localStorage.setItem('access_token', 'mock-jwt-token');
+      // Show success toast
+      showToast.success("Login successful! Redirecting to dashboard...");
 
+      // Navigate to dashboard
       router.push('/dashboard');
-      router.refresh();
-    } catch (err) {
-      setError('Login failed. Please check your credentials.');
+    } catch (err: any) {
+      // Show error toast
+      const errorMessage = err.message || "Login failed. Please check your credentials.";
+      showToast.error(errorMessage);
       console.error(err);
     } finally {
       setLoading(false);
@@ -37,8 +38,7 @@ export default function LoginPage() {
 
   return (
     <div className="auth-container">
-      <h1 className='text-green-800'>Login</h1>
-      {error && <div className="error">{error}</div>}
+      <h1 className="text-green-800">Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
@@ -48,6 +48,7 @@ export default function LoginPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            disabled={loading}
           />
         </div>
         <div>
@@ -58,10 +59,11 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            disabled={loading}
           />
         </div>
         <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
       <p>

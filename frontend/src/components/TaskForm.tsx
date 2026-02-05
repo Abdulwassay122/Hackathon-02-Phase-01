@@ -1,17 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { TaskCreate } from '../../../backend/src/models/task';
 import { apiService } from '../services/api';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorDisplay from './ErrorDisplay';
+import { TaskCreate } from '../types/api';
+import { ApiResponse } from '../types/api';
 
 interface TaskFormProps {
-  userId: number;
   onTaskCreated: () => void;
 }
 
-export default function TaskForm({ userId, onTaskCreated }: TaskFormProps) {
+export default function TaskForm({ onTaskCreated }: TaskFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,13 +30,17 @@ export default function TaskForm({ userId, onTaskCreated }: TaskFormProps) {
 
     try {
       const newTask: TaskCreate = { title, description };
-      await apiService.post('/tasks', newTask);
+      const response: ApiResponse<TaskCreate> = await apiService.createTask(newTask);
 
-      setTitle('');
-      setDescription('');
-      onTaskCreated();
+      if (response.success) {
+        setTitle('');
+        setDescription('');
+        onTaskCreated();
+      } else {
+        setError(response.error || 'Failed to create task');
+      }
     } catch (err) {
-      setError('Failed to create task');
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
       console.error(err);
     } finally {
       setLoading(false);

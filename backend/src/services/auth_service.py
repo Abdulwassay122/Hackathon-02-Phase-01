@@ -1,7 +1,7 @@
 from sqlmodel import Session, select
 from src.models.user import User
 from src.utils.password import verify_password, hash_password
-from src.utils.jwt import create_access_token
+from src.auth.jwt import create_access_token
 from src.models.auth_response import TokenResponse, UserResponse
 from datetime import timedelta
 from typing import Optional

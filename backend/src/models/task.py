@@ -4,10 +4,10 @@ from datetime import datetime
 from sqlalchemy import Index
 
 class TaskBase(SQLModel):
-    title: str
-    description: Optional[str] = None
-    completed: bool = False
-    user_id: str
+    title: str = Field(min_length=1)
+    description: Optional[str] = Field(default=None)
+    completed: bool = Field(default=False)
+    user_id: str = Field(index=True)  # Add index for better performance
 
 class Task(TaskBase, table=True):
     __table_args__ = (

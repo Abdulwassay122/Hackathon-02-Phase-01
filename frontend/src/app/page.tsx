@@ -19,6 +19,7 @@ export default function Login() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         // Store the token in localStorage or a secure cookie
         localStorage.setItem('token', data.access_token);
 
