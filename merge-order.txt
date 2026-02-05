@@ -1,0 +1,24 @@
+# Merge Order for Feature Branches
+
+## Priority Merge Order Based on Dependencies
+
+### Foundation Changes (Authentication/Database)
+1. 1-add-register-route - Registration functionality (creates user infrastructure)
+2. 001-fix-dashboard-auth - Authentication fixes
+3. 007-fix-task-api-auth - Task API authentication
+4. 008-fix-backend-401-auth - Backend 401 error handling
+5. 008-fix-backend-crash - Stability fixes
+
+### Backend API Changes
+6. 3-repo-consolidation - Repository organization
+7. 4-fullstack-stabilization - Full-stack stability
+8. 5-app-stabilization - Application stability
+
+### Frontend Components
+9. 009-fix-frontend-user-id - Frontend user identification
+
+### Styling and UX
+10. 2-fix-tailwind-css - Styling improvements
+
+## Rationale
+This order ensures that foundational changes (authentication, stability) are merged first, followed by backend API changes, then frontend components, and finally styling improvements. This minimizes conflicts and ensures each layer builds appropriately on the previous ones.
